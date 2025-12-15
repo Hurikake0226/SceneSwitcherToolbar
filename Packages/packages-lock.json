@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.hurikake.scene-switcher-toolbar": {
+    "com.hurikake.com.hurikake.sceneswitchertoolber": {
       "version": "file:SceneSwitcherToolbar",
       "depth": 0,
       "source": "embedded",
