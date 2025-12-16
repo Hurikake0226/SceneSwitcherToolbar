@@ -193,8 +193,8 @@
       },
       "url": "https://packages.unity.com"
     },
-    "hurikake0226.sceneswitchertoolber": {
-      "version": "file:SceneSwitcherToolbar",
+    "hurikake0226.sceneswitchertoolbar": {
+      "version": "file:hurikake0226.sceneswitchertoolbar",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
