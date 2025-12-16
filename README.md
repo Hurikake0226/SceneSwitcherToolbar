@@ -1,1 +1,1 @@
-https://github.com/Hurikake0226/SceneSwitchToolber.git?path=/Packages/SceneSwitcherToolbar
+https://github.com/Hurikake0226/SceneSwitchToolbar.git?path=/Packages/SceneSwitcherToolbar
