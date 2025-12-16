@@ -20,6 +20,18 @@ namespace SceneSwitcherToolbar
             {
                 MainToolbar.Refresh(kElementPath);
             };
+
+            // アクティブシーンが変更されたときにツールバーを更新
+            EditorSceneManager.activeSceneChangedInEditMode += (oldScene, newScene) =>
+            {
+                MainToolbar.Refresh(kElementPath);
+            };
+
+            // シーンが保存されたときにツールバーを更新
+            EditorSceneManager.sceneSaved += (scene) =>
+            {
+                MainToolbar.Refresh(kElementPath);
+            };
         }
 
         [MainToolbarElement(kElementPath, defaultDockPosition = MainToolbarDockPosition.Right)]

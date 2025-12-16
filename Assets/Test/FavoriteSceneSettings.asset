@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b237b22ce1d48c46afda164864fe37f, type: 3}
+  m_Name: FavoriteSceneSettings
+  m_EditorClassIdentifier: SceneSwitcherToolber.Editor::FavoriteSceneSettings
+  favoriteScenes:
+  - favoriteName: Test
+    activeScene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+    additiveScene:
+    - {fileID: 102900000, guid: 685599b7921ae7e45bfb20a359f42bac, type: 3}
+    - {fileID: 102900000, guid: 69b193ec7d461f2489c803694e237f6b, type: 3}
+    - {fileID: 102900000, guid: db7066423406cc944bf6881af8c2b298, type: 3}
