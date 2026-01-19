@@ -20,7 +20,7 @@ namespace SceneSwitcherToolbar.DropDownMenu.Menus
                     continue;
 
                 menu.AddItem(
-                    new GUIContent($"Favorite/{settings.name}/{favorite.favoriteName}"),
+                    new GUIContent($"Favorite/{favorite.favoriteName}"),
                     false,
                     () => OpenScene(favorite)
                 );

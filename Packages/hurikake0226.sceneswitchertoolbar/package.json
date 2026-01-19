@@ -1,7 +1,7 @@
 {
   "name": "hurikake0226.sceneswitchertoolbar",
   "displayName": "Scene Switcher Toolbar",
-  "version": "1.0.1",
-  "unity": "6000.1",
+  "version": "1.0.2",
+  "unity": "6000.3",
   "description": "Toolbar scene switcher"
 }
