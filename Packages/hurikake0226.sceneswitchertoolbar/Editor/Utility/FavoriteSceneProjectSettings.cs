@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
 using UnityEngine;
-using SceneSwitcherToolbar.FavoriteSettingWindow;
-
-
-public class FavoriteSceneSettings : ScriptableObject
+namespace SceneSwitcherToolbar
 {
-    public FavoriteSceneSettingsSave[] favoriteScenes;
+    public class FavoriteSceneSettings : ScriptableObject
+    {
+        public FavoriteSceneSettingsSave[] favoriteScenes;
+    }
 }
 #endif

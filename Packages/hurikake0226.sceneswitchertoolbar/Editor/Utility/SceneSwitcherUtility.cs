@@ -4,43 +4,46 @@ using UnityEngine.SceneManagement;
 using System.IO;
 using System.Linq;
 
-public static class SceneSwitcherUtility
+namespace SceneSwitcherToolbar
 {
-    public const string SaveKey = "FavoriteSettingWindow.FavoriteScenes";
-
-    public static SceneAssetData[] GetAllProjectScenes()
+    public static class SceneSwitcherUtility
     {
-        return AssetDatabase.FindAssets("t:Scene")
-            .Select(AssetDatabase.GUIDToAssetPath)
-            .Where(IsValidScenePath)
-            .Select(path =>
-                new SceneAssetData(
-                    Path.GetFileNameWithoutExtension(path),
-                    path
-                )
-            )
-            .OrderBy(scene => scene.name)
-            .ToArray();
-    }
+        public const string SaveKey = "FavoriteSettingWindow.FavoriteScenes";
 
-    public static bool IsSceneLoaded(string path)
-    {
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+        public static SceneAssetData[] GetAllProjectScenes()
         {
-            if (SceneManager.GetSceneAt(i).path == path)
-                return true;
+            return AssetDatabase.FindAssets("t:Scene")
+                .Select(AssetDatabase.GUIDToAssetPath)
+                .Where(IsValidScenePath)
+                .Select(path =>
+                    new SceneAssetData(
+                        Path.GetFileNameWithoutExtension(path),
+                        path
+                    )
+                )
+                .OrderBy(scene => scene.name)
+                .ToArray();
         }
-        return false;
-    }
 
-    private static bool IsValidScenePath(string path)
-    {
-        return File.Exists(path)
-            && Path.GetExtension(path) == ".unity"
-            && path.StartsWith("Assets/")
-            && !path.Contains("Addressable")
-            && !path.Contains("_Recovery")
-            && !path.Contains("SerializationTests");
+        public static bool IsSceneLoaded(string path)
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                if (SceneManager.GetSceneAt(i).path == path)
+                    return true;
+            }
+            return false;
+        }
+
+        private static bool IsValidScenePath(string path)
+        {
+            return File.Exists(path)
+                && Path.GetExtension(path) == ".unity"
+                && path.StartsWith("Assets/")
+                && !path.Contains("Addressable")
+                && !path.Contains("_Recovery")
+                && !path.Contains("SerializationTests");
+        }
     }
 }
 #endif
