@@ -10,7 +10,7 @@ namespace SceneSwitcherToolbar
 {
     public class MainToolbarSceneSwitcher
     {
-        const string kElementPath = "Examples/SceneSwitcher";
+        const string kElementPath = "Editor Utility/Scene Switcher";
 
         [InitializeOnLoadMethod]
         private static void Initialize()
@@ -34,7 +34,7 @@ namespace SceneSwitcherToolbar
             };
         }
 
-        [MainToolbarElement(kElementPath, defaultDockPosition = MainToolbarDockPosition.Right)]
+        [MainToolbarElement(kElementPath, defaultDockPosition = MainToolbarDockPosition.Middle)]
         public static MainToolbarElement Create()
         {
             var icon = EditorGUIUtility.IconContent("SceneAsset Icon").image as Texture2D;

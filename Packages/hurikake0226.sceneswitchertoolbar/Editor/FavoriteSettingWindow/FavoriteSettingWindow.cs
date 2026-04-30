@@ -6,12 +6,15 @@ namespace SceneSwitcherToolbar.FavoriteSettingWindow
 {
     public class FavoriteSettingWindow : EditorWindow
     {
+        private const string MenuPath = "Tools/SceneSwitcherToolbar/Favorite Setting";
+
         [SerializeField] FavoriteSceneSettings _current;
 
         private SerializedObject _serializedObject;
         private SerializedProperty _favoriteScenesProp;
 
-        [MenuItem("Window/Favorite Setting")]
+
+        [MenuItem(MenuPath)]
         public static void Open()
         {
             GetWindow<FavoriteSettingWindow>("Favorite Setting");
