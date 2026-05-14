@@ -5,8 +5,11 @@ using SceneSwitcherToolbar.FavoriteSettingWindow;
 
 namespace SceneSwitcherToolbar.DropDownMenu.Menus
 {
+
     public class WindowOpenFavoriteSetting
     {
+        private const string MenuPath = "Tools/SceneSwitcherToolbar/Favorite Setting";
+
         public static void Build(GenericMenu menu)
         {
             menu.AddItem(
@@ -18,7 +21,7 @@ namespace SceneSwitcherToolbar.DropDownMenu.Menus
 
         private static void Open()
         {
-            EditorApplication.ExecuteMenuItem("Window/Favorite Setting");
+            EditorApplication.ExecuteMenuItem(MenuPath);
         }
     }
 }
