@@ -15,16 +15,111 @@ MonoBehaviour:
   scenes:
   - guid: 99c9720ab356a0642a771bea13969a05
     sceneName: SampleScene
-    sceneSwitch: 0
-    mode: 0
+    sceneSwitch: 1
+    mode: 1
     customPath: Custom/
   - guid: 4e22cc7bd9e37ba4b8e3e2c31c613365
     sceneName: Test_02 1
-    sceneSwitch: 0
-    mode: 0
+    sceneSwitch: 1
+    mode: 1
     customPath: Custom/
   - guid: 69b193ec7d461f2489c803694e237f6b
     sceneName: Test_02
+    sceneSwitch: 1
+    mode: 1
+    customPath: Single/
+  - guid: c066f683ae7d4fe44ab920a22865e4a9
+    sceneName: 
     sceneSwitch: 0
     mode: 0
-    customPath: Custom/
+    customPath: 
+  - guid: 0d12ded092455874a9617579ade9b0e7
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 08079bcd5a38ec5459e95445f2f3554b
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: c0b327cec738b6e4ea324f6496c73809
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 00199d5950377489b9f4b906ad0cd38f
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 2d4ef00a112a4481cbfcb0081858241f
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: c0e6fc22d33db480e853a4b2c01cf42d
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 585d86c78f82aa044898d4226f87a937
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 96db442c62e20974288fcee99145c6a9
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: c5e300ed27d1e554abae91e70f961ebc
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 5ff39781fd7edcc479cec1dfcfe2d9ef
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 5cbd2db12a5d64ba9ac02fdc86d178e8
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: f0f1b78a97fcd1e4aa45deb60db1d673
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 4bee11bbdc9364d3cb1df424edd82535
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: e78f261bbbf61e54990aba7192f284fe
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: c2b6acd5f3e084f5a938c4cb2687f54e
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: e026d555eae824f65922633f37a14385
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 41b58a5346e82e4489f95a96a01905f4
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
+  - guid: 5cae0d87369a2405eaa962b8d920b947
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
