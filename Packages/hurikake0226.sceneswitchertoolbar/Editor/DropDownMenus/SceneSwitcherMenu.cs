@@ -11,13 +11,14 @@ namespace SceneSwitcherToolbar.DropDownMenu
         public static void Show(Rect rect)
         {
             var menu = new GenericMenu();
-            var scenes = SceneSwitcherUtility.GetAllProjectScenes();
+            //var scenes = SceneSwitcherUtility.GetAllProjectScenes();
+            var scemesnew = SceneSwitcherUtility.GetConfiguredScenes();
 
-            if (scenes.Length == 0) return;
+            if (scemesnew.Count == 0) return;
 
             string activeSceneName = SceneManager.GetActiveScene().name;
 
-            foreach (var scene in scenes)
+            foreach (var scene in scemesnew)
             {
                 SceneOpenSingle.Build(menu, scene, activeSceneName);
                 SceneOpenAdditive.Build(menu, scene);
