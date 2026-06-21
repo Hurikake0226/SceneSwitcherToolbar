@@ -11,7 +11,6 @@ namespace SceneSwitcherToolbar.DropDownMenu
         public static void Show(Rect rect)
         {
             var menu = new GenericMenu();
-            //var scenes = SceneSwitcherUtility.GetAllProjectScenes();
             var scemesnew = SceneSwitcherUtility.GetConfiguredScenes();
 
             if (scemesnew.Count == 0) return;
@@ -21,7 +20,17 @@ namespace SceneSwitcherToolbar.DropDownMenu
             foreach (var scene in scemesnew)
             {
                 SceneOpenSingle.Build(menu, scene, activeSceneName);
+            }
+
+            // Additive は後でまとめて追加
+            foreach (var scene in scemesnew)
+            {
                 SceneOpenAdditive.Build(menu, scene);
+            }
+
+            // Favorite も最後にまとめる（必要なら）
+            foreach (var scene in scemesnew)
+            {
                 SceneOpenFavorite.Build(menu);
             }
 

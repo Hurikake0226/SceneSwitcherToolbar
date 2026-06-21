@@ -103,19 +103,26 @@ public class SceneDatabaseWindow : EditorWindow
 
     void RefreshDatabase()
     {
+        // ✅ 正しいデータベース本体を取得
         var db = SceneDatabaseUtility.GetDatabase();
 
-        // プロジェクト内の全Sceneを検索
+        // プロジェクト内の全Scene GUID取得
         var allSceneGuids = AssetDatabase.FindAssets("t:Scene");
 
         foreach (var guid in allSceneGuids)
         {
+            // まだ登録されていない場合のみ追加
             if (!db.scenes.Any(s => s.guid == guid))
             {
                 db.scenes.Add(new SceneEntry { guid = guid });
             }
         }
 
+        // 不要になったシーン（削除されたシーン）を掃除したい場合はこれも追加👇
+        db.scenes.RemoveAll(entry => !allSceneGuids.Contains(entry.guid));
+
+        // 保存
         EditorUtility.SetDirty(db);
+        AssetDatabase.SaveAssets();
     }
 }

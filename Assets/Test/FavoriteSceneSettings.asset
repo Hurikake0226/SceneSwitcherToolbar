@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b237b22ce1d48c46afda164864fe37f, type: 3}
   m_Name: FavoriteSceneSettings
   m_EditorClassIdentifier: SceneSwitcherToolber.Editor::FavoriteSceneSettings
-  favoriteScenes: []
+  favoriteScenes:
+  - favoriteName: ffsfs
+    activeScene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+    additiveScene:
+    - {fileID: 102900000, guid: 69b193ec7d461f2489c803694e237f6b, type: 3}
+  - favoriteName: 123123
+    activeScene: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
+    additiveScene:
+    - {fileID: 102900000, guid: 69b193ec7d461f2489c803694e237f6b, type: 3}

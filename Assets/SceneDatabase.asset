@@ -11,23 +11,23 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 915abbe9b38f6cd45aedddcf0d87667d, type: 3}
   m_Name: SceneDatabase
-  m_EditorClassIdentifier: Assembly-CSharp::SceneDatabase
+  m_EditorClassIdentifier: SceneSwitcherToolber.Editor::SceneDatabase
   scenes:
   - guid: 99c9720ab356a0642a771bea13969a05
-    sceneName: SampleScene
-    sceneSwitch: 1
-    mode: 1
-    customPath: Custom/
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
   - guid: 4e22cc7bd9e37ba4b8e3e2c31c613365
-    sceneName: Test_02 1
-    sceneSwitch: 1
-    mode: 1
-    customPath: Custom/
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
   - guid: 69b193ec7d461f2489c803694e237f6b
-    sceneName: Test_02
-    sceneSwitch: 1
-    mode: 1
-    customPath: Single/
+    sceneName: 
+    sceneSwitch: 0
+    mode: 0
+    customPath: 
   - guid: c066f683ae7d4fe44ab920a22865e4a9
     sceneName: 
     sceneSwitch: 0
