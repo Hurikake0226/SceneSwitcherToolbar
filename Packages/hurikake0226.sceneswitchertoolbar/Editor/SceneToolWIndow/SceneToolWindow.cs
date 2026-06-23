@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using SceneSwitcherToolbar;
 using System.Linq;
 using UnityEditor;
@@ -113,6 +114,7 @@ public class SceneToolWindow : EditorWindow
         var configuredScenes = SceneSwitcherUtility.GetConfiguredScenes();
         var dbAsset = SceneDatabaseUtility.GetDatabase();
 
+        DrawSceneDatabaseSelector(dbAsset);
         DrawSceneToolbar();
 
         _sceneScroll = EditorGUILayout.BeginScrollView(_sceneScroll);
@@ -151,6 +153,44 @@ public class SceneToolWindow : EditorWindow
         }
 
         EditorGUILayout.EndHorizontal();
+    }
+
+    void DrawSceneDatabaseSelector(SceneDatabase currentDatabase)
+    {
+        EditorGUILayout.BeginHorizontal();
+
+        EditorGUI.BeginChangeCheck();
+        var selectedDatabase = (SceneDatabase)EditorGUILayout.ObjectField(
+            "Database",
+            currentDatabase,
+            typeof(SceneDatabase),
+            false
+        );
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            SceneDatabaseUtility.SetDatabase(selectedDatabase);
+            GUI.changed = true;
+        }
+
+        if (GUILayout.Button("Select", GUILayout.Width(60)))
+        {
+            Selection.activeObject = currentDatabase;
+        }
+
+        if (GUILayout.Button("New", GUILayout.Width(60)))
+        {
+            CreateNewDatabase();
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        string path = currentDatabase == null
+            ? "None"
+            : AssetDatabase.GetAssetPath(currentDatabase);
+
+        EditorGUILayout.LabelField("Path", path, EditorStyles.miniLabel);
+        GUILayout.Space(4);
     }
 
     void DrawSceneRow(SceneEntry entry, SceneAsset scene)
@@ -197,6 +237,22 @@ public class SceneToolWindow : EditorWindow
         }
 
         EditorUtility.SetDirty(db);
+    }
+
+    void CreateNewDatabase()
+    {
+        string path = EditorUtility.SaveFilePanelInProject(
+            "Create Scene Database",
+            "SceneDatabase",
+            "asset",
+            "Choose location for Scene Database"
+        );
+
+        if (string.IsNullOrEmpty(path)) return;
+
+        var database = SceneDatabaseUtility.CreateDatabaseAt(path);
+        Selection.activeObject = database;
+        RefreshDatabase();
     }
 
     // =========================
@@ -278,3 +334,4 @@ public class SceneToolWindow : EditorWindow
         Bind();
     }
 }
+#endif

@@ -1,5 +1,6 @@
-using UnityEditor;
+#if UNITY_EDITOR
 using System.Linq;
+using UnityEditor;
 
 public class SceneDatabaseCleanup : AssetPostprocessor
 {
@@ -9,21 +10,19 @@ public class SceneDatabaseCleanup : AssetPostprocessor
         string[] moved,
         string[] movedFrom)
     {
-        var db = SceneDatabaseUtility.GetDatabase();
+        if (!SceneDatabaseUtility.TryGetDatabase(out var database)) return;
 
-        // 存在するSceneのGUID一覧
         var validGuids = AssetDatabase.FindAssets("t:Scene")
-            .Select(g => g)
+            .Select(guid => guid)
             .ToHashSet();
 
-        // 不要エントリ削除
-        int before = db.scenes.Count;
+        int before = database.scenes.Count;
+        database.scenes.RemoveAll(entry => !validGuids.Contains(entry.guid));
 
-        db.scenes.RemoveAll(e => !validGuids.Contains(e.guid));
-
-        if (db.scenes.Count != before)
+        if (database.scenes.Count != before)
         {
-            EditorUtility.SetDirty(db);
+            EditorUtility.SetDirty(database);
         }
     }
 }
+#endif

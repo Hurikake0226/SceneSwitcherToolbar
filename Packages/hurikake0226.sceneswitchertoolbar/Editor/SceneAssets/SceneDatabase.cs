@@ -1,13 +1,13 @@
+#if UNITY_EDITOR
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Scene/Scene Database")]
 public class SceneDatabase : ScriptableObject
 {
     public List<SceneEntry> scenes = new List<SceneEntry>();
 }
-
 
 [Serializable]
 public class SceneEntry
@@ -18,3 +18,4 @@ public class SceneEntry
     public int mode;
     public string customPath;
 }
+#endif

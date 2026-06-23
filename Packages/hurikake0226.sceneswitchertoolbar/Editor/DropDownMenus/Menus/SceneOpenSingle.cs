@@ -12,28 +12,27 @@ namespace SceneSwitcherToolbar.DropDownMenu.Menus
             menu.AddItem(
                 new GUIContent($"Single/{scene.name}"),
                 scene.name == activeSceneName,
-                () => Open(scene.name, scene.path)
+                () => Open(scene.path)
             );
         }
 
         public static void Build(GenericMenu menu, ConfiguredSceneData configured, string activeSceneName)
         {
-            // モードがシングルorデフォルトの場合
-            if (configured == null || configured.entry.mode == 0 || configured.entry.mode == 1)
-            {
-                var scene = configured.assetData;
+            if (configured == null || configured.entry == null) return;
 
-                menu.AddItem(
-                    new GUIContent($"Single/{scene.name}"),
-                    scene.name == activeSceneName,
-                    () => Open(scene.name, scene.path)
-                );
-            }
+            var mode = (SceneType)configured.entry.mode;
+            if (mode != SceneType.Default && mode != SceneType.Single) return;
+
+            var scene = configured.assetData;
+            menu.AddItem(
+                new GUIContent($"Single/{scene.name}"),
+                scene.name == activeSceneName,
+                () => Open(scene.path)
+            );
         }
 
-        private static void Open(string name, string path)
+        private static void Open(string path)
         {
-            // 保存の確認
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
             {
                 EditorSceneManager.OpenScene(path, OpenSceneMode.Single);

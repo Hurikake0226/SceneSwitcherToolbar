@@ -1,75 +1,65 @@
 #if UNITY_EDITOR
-using UnityEditor;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic; // Listを使うために追加
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 namespace SceneSwitcherToolbar
 {
-    /// <summary>
-    /// 💡 シーン情報(SceneAssetData)と設定項目(SceneEntry)をまとめるデータクラス
-    /// </summary>
     public class ConfiguredSceneData
     {
         public SceneAssetData assetData;
-        public SceneEntry entry; // インスペクタで一度も触っていない場合は null になります
+        public SceneEntry entry;
 
-        // ツールバーに表示すべきかどうか（ONになっているか）を簡単に判定できるプロパティ
         public bool IsSwitchEnabled => entry != null && entry.sceneSwitch;
     }
 
     public static class SceneSwitcherUtility
     {
-        /// <summary>
-        /// 全シーンを取得する（元のメソッド）
-        /// </summary>
         public static SceneAssetData[] GetAllProjectScenes()
         {
             return AssetDatabase.FindAssets("t:Scene")
                 .Select(AssetDatabase.GUIDToAssetPath)
                 .Where(IsValidScenePath)
-                .Select(path =>
-                    new SceneAssetData(
-                        Path.GetFileNameWithoutExtension(path),
-                        path
-                    )
-                )
+                .Select(path => new SceneAssetData(Path.GetFileNameWithoutExtension(path), path))
                 .OrderBy(scene => scene.name)
                 .ToArray();
         }
 
-        /// <summary>
-        /// 🔥 全シーンを取得し、SceneDatabaseの設定項目を紐付けて返す
-        /// </summary>
         public static List<ConfiguredSceneData> GetConfiguredScenes()
         {
-            // 1. プロジェクト内の全シーンを取得
             SceneAssetData[] scenes = GetAllProjectScenes();
+            SceneDatabase database = SceneDatabaseUtility.GetDatabase();
 
-            // 2. データベースを取得
-            SceneDatabase db = SceneDatabaseUtility.GetDatabase();
+            var entriesByGuid = database.scenes
+                .Where(entry => !string.IsNullOrEmpty(entry.guid))
+                .GroupBy(entry => entry.guid)
+                .ToDictionary(group => group.Key, group => group.First());
 
-            List<ConfiguredSceneData> resultList = new List<ConfiguredSceneData>();
+            var result = new List<ConfiguredSceneData>();
 
             foreach (var scene in scenes)
             {
-                // ※ SceneAssetDataに "path" というプロパティ/フィールドがある前提です
-                // シーンのパスからGUIDを取得する
                 string guid = AssetDatabase.AssetPathToGUID(scene.path);
+                if (!entriesByGuid.TryGetValue(guid, out var entry))
+                {
+                    entry = new SceneEntry { guid = guid };
+                    database.scenes.Add(entry);
+                    entriesByGuid.Add(guid, entry);
+                }
 
-                // データベースからGUIDが一致するエントリーを検索する
-                SceneEntry matchedEntry = db.scenes.FirstOrDefault(s => s.guid == guid);
+                entry.sceneName = scene.name;
 
-                // ペアにしてリストに追加
-                resultList.Add(new ConfiguredSceneData
+                result.Add(new ConfiguredSceneData
                 {
                     assetData = scene,
-                    entry = matchedEntry
+                    entry = entry
                 });
             }
 
-            return resultList;
+            EditorUtility.SetDirty(database);
+            return result;
         }
 
         public static bool IsSceneLoaded(string path)
@@ -79,6 +69,7 @@ namespace SceneSwitcherToolbar
                 if (SceneManager.GetSceneAt(i).path == path)
                     return true;
             }
+
             return false;
         }
 
